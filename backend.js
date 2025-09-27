@@ -152,7 +152,7 @@ function removeletter(){
 
 
 function getformatteddate(d_object){
-    return d_object.getDate() + "/" + md.getMonth() + "/" + md.getFullYear()
+    return d_object.getDate() + "/" + d_object.getMonth() + "/" + d_object.getFullYear()
 }
 
 
