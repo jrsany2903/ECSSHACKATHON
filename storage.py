@@ -13,13 +13,13 @@ app = Flask(__name__)
 @app.route('/translate', methods=['POST'])
 ### translation
 async def translate():
-    data = request.json
-    text = data.get('text')
+    data = request.get_json()
+    text = data['text']
     # translates to arabic
     translator = Translator()
     y = await translator.translate(text, src="en",dest="ar")
-    return jsonify(y)
+    return jsonify({'translated': y})
 
 
 if __name__ == "__main__":
-    app.run(deug=True)
+    app.run(debug=True)

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>English to Arabic Translator</title>
+</head>
+<body>
+  <h1>English to Arabic Translator</h1>
+
+  <input type="text" id="inputText" placeholder="Enter English text" style="width: 300px;" />
+  <button id="translateBtn">Translate</button>
+
+  <p>Translation: <span id="outputText"></span></p>
+
+  <script>
+    document.getElementById('translateBtn').addEventListener('click', async () => {
+      const input = document.getElementById('inputText').value;
+
+      if (!input) {
+        alert('Please enter some text');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/translate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: input })
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        document.getElementById('outputText').textContent = data.translated;
+      } catch (error) {
+        alert('Error: ' + error.message);
+      }
+    });
+  </script>
+</body>
+</html>
