@@ -318,7 +318,7 @@ async function processSuccessfulSubmission() {
         "fname": formData.get("firstname"),
         "lname": formData.get("surname"),
         "fullname": formData.get("full"),
-        "DOB": getformatteddate(formData.get("dob")),
+        "DOB": getformatteddate(new Date(formData.get("dob").textContent)),
         "PIN": formData.get("pin"),
         "address": formData.get("address"),
         "email": formData.get("email"),
