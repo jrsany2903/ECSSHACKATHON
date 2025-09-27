@@ -152,9 +152,9 @@ function removeletter(){
 
 
 function getformatteddate(d_object){
-    return d_object.getDate() + "/" + d_object.getMonth() + "/" + d_object.getFullYear()
+    return d_object.getDate() + "/" + (d_object.getMonth() + 1) + "/" + d_object.getFullYear()
 }
-
+//s
 
 function Savetofile(forminfo){
     //connect to Wills python rest API
