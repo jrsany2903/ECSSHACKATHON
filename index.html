@@ -68,10 +68,24 @@
                 Savetofile(formData)
 
                 alert("your info has been stored on a server in arabic")
+              
+              SubmitButtonClick()
             })
         </script>
     </form>
 </div>
 
+<div id="modal-roulette" class="modal-roulette">
+    <div class="roulette-wheel" id="roulette-wheel">
+        <h1>Do you think red will win?</h1>
+        <div style="display: flex; align-items: center; flex-direction: row;">
+            <p>Yes</p>
+            <input type="checkbox" id="roulette-input"/>
+        </div>
+        
+       <canvas id="roulette-canvas" width="1000" height="1000" style="aspect-ratio: 1 / 1; height: 80%;"></canvas>
+       <button id="spin-button">Spin</button>
+    </div>
+</div>
 </body>
 </html>
