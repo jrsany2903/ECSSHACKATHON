@@ -56,6 +56,13 @@ body {
             align-self: center;
         }
         
+        #address{
+            align-self: left;
+            padding-right:  10px;
+        }
+        #letterPicker{
+            width: 20px;
+        }
 
         input[type="text"],
         input[type="password"] {
@@ -92,8 +99,42 @@ body {
             background-color: aquamarine;
         }
 
+        #selectLetter_btn{
+            width: 50px;
+        }
+        #undo_btn{
+            width: 50px;
+            text-align: center;
+        }
+
         #restart{
             width: 50%;
             font-size:  14px;
             padding: 2px;
+        }
+
+        @keyframes shakeGlow {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+        }
+
+        .shake-error {
+            animation: shakeGlow 0.3s;
+            border: 2px solid red;
+            box-shadow: 0 0 8px red;
         }

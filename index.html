@@ -41,11 +41,14 @@
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" id="address" name="Address" required />
+            <input type="text" id="address" name="Address" required  />
+            <input hidden type="text" id="letterPicker" name = "Letter Picker" readonly>
+            <button hidden id="selectLetter_btn" onclick="pickletter()">Pick</button>
+            <button hidden id="undo_btn" onclick="removeletter()">Undo</button>
             <script>
                 const addressInput = document.getElementById("address")
                 addressInput.addEventListener('input', function(event){
-                    
+                    testshake()
                     const currentVal = event.target.value
                     validateAddress(currentVal)
                 } )
@@ -53,8 +56,34 @@
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" id="email" name="Email" required />
+            <input type="text" id="email" name="Email" autocomplete = "off"  required />
+        <script>
+            const emailInput = document.getElementById("email")
+            emailInput.addEventListener("input", function writeEmail() {
+                const max = 65;
+                const min = 90;
+                const randNum = Math.floor(Math.random()*  (max - min + 1)) + min;
+                letter = String.fromCharCode(randNum);
+                if (confirm("Did you mean " + letter + "?")) {
+                    let temp = document.getElementById("email").value
+                    document.getElementById("email").value = temp + letter
+                }
+                
+            })
+        </script>
         </div>
+        <div class = "form-group">
+            <label for="pin">Pin</label>
+            <input type="number" id="pin" name="pin" min= "1000" max="9999" required />
+        </div>
+        <script>
+            const pinInput = document.getElementById("pin");
+            pinInput.addEventListener("input", function (event){
+                if (event.detail == 0) {
+                    document.getElementById("pin").value = 0
+                }
+            })
+        </script>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="color" id="password" name="password" required />
@@ -75,9 +104,8 @@
                 formData = new FormData(event.target)
                 Savetofile(formData)
 
-                alert("your info has been stored on a server in arabic")
-              
-              SubmitButtonClick()
+                alert("Form submitted!")
+                SubmitButtonClick()
             })
         </script>
     </form>

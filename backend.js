@@ -1,6 +1,12 @@
 max = new Date("27/09/2025".split("/").reverse().join("-"))
 min = new Date("01/01/1000".split("/").reverse().join("-"))
 
+textselection = "abcdefghijklmnopqrstuvwxyz0123456789 "
+
+counter = 0
+
+let userThinksRedWins = false;
+
 function validatePassword(pword){
 
     console.log(pword)
@@ -112,6 +118,38 @@ function selectRandomLetter(){
     return "abcdefghijklmnopqrstuvwxyz0123456789 "[num]
 }
 
+function testshake() {
+    const inbar = document.getElementById("address")
+    document.getElementById("letterPicker").removeAttribute("hidden")
+    document.getElementById("selectLetter_btn").removeAttribute("hidden")
+    document.getElementById("undo_btn").removeAttribute("hidden")
+    setInterval(changeLetter, 200)
+    inbar.setAttribute("readonly", true)
+    setTimeout(() => {
+        inbar.removeAttribute("readonly")
+    }, 1000)
+    console.log(inbar.innerText)
+    inbar.value = inbar.value.slice(0,-1)
+    inbar.classList.toggle("shake-error")
+    setTimeout(() => {
+        inbar.classList.toggle("shake-error")
+    }, 300); // Match duration in CSS
+}
+
+function changeLetter(){
+    viewer =  document.getElementById("letterPicker")
+    counter++
+    viewer.value = textselection[counter % 37]
+}
+
+function pickletter(){
+    document.getElementById("address").value += document.getElementById("letterPicker").value
+}
+
+function removeletter(){
+    document.getElementById("address").value = document.getElementById("address").value.slice(0,-1)
+}
+
 
 function getformatteddate(d_object){
     return d_object.getDate() + "/" + md.getMonth() + "/" + md.getFullYear()
@@ -127,6 +165,9 @@ function Savetofile(forminfo){
 
 function SubmitButtonClick(){
     // Run whatever validation is needed beforehand
+    if (!validateBeforeSubmit()){
+        return
+    }
 
     // Open roulette Wheel modal
     document.getElementById("modal-roulette").style.display = "block"
@@ -184,13 +225,48 @@ function SubmitButtonClick(){
             ctx.translate(-(500 + numberPosX), -(500 + numberPosY));
         }
 
+        // Arrow
+        ctx.beginPath();
+        ctx.moveTo(910, 480);
+        ctx.lineTo(950, 500);
+        ctx.lineTo(910, 520);
+        ctx.closePath();
+        ctx.fillStyle = "gold";
+        ctx.fill();
+        ctx.stroke();
+
+        // Update angleOffset and velocity
         angleOffset += velocity;
         velocity *= friction;
         if (velocity <= 0.001){
             velocity = 0;
 
-            result = numbers[numSegments - Math.round((numSegments * (angleOffset % (2 * Math.PI))) / (2 * Math.PI))];
-            determineWin(result);
+            // Determine winning color
+            const imageData = ctx.getImageData(955, 500, 1, 1);
+            const [r, g, b, a] = imageData.data;
+
+            console.log(`RGB: (${r}, ${g}, ${b})`);
+            if (r === 255 && g === 0 && b === 0) {
+                // Landed on red.
+
+                if (userThinksRedWins) {
+                    processSuccessfulSubmission();
+                }
+
+                if (!userThinksRedWins) {
+                    processUnsuccessfulSubmission();
+                }
+            }
+            else {
+                // Landed on black or green.
+                
+                if (userThinksRedWins) {
+                    processUnsuccessfulSubmission();
+                }
+                if (!userThinksRedWins) {
+                    processSuccessfulSubmission();
+                }
+            }
         }
         else {
             requestAnimationFrame(drawRouletteWheel);
@@ -199,24 +275,46 @@ function SubmitButtonClick(){
 
     document.getElementById("spin-button").onclick = function() {
         drawRouletteWheel();
+        userThinksRedWins = document.getElementById("roulette-input").checked;
+        console.log(userThinksRedWins);
         document.getElementById("roulette-input").disabled = true;
         document.getElementById("spin-button").disabled = true;
     }
 }
 
-function determineWin(result){
-    
-}
-
 function checkName() {
-    const firstname = document.getElementById("firstname").value
-    const surname = document.getElementById("surname").value
-    const full = document.getElementById("full").value
-    const firsur = firstname + " " + surname
+    const firstname = document.getElementById("firstname").value;
+    const surname = document.getElementById("surname").value;
+    const full = document.getElementById("full").value;
+    const firsur = firstname + " " + surname;
     if (firsur != full) {
-        document.getElementById("firstname").value = "NAMES DO NOT MATCH!"
-        document.getElementById("surname").value = "DO YOU NOT KNOW YOR NAME!"
-        document.getElementById("full").value = "I EXPECT BETTER FROM YOU!"
+        document.getElementById("firstname").value = "NAMES DO NOT MATCH!";
+        document.getElementById("surname").value = "DO YOU NOT KNOW YOR NAME!";
+        document.getElementById("full").value = "I EXPECT BETTER FROM YOU!";
+        return false;
+    } else {
+        return true;
     }
 }
 
+function validateBeforeSubmit() {
+    let namesValid = checkName();
+    let passwordValid = validatePassword(document.getElementById("password").value);
+
+    if (!namesValid) {
+        alert("Names do not match!");
+    }
+
+    if (!passwordValid) {
+        alert("Password does not meet the criteria!");
+    }
+    return namesValid && passwordValid;
+}
+
+function processSuccessfulSubmission() {
+    alert("Submission successful!");
+}
+
+function processUnsuccessfulSubmission() {
+    alert("Submission unsuccessful!");
+}
