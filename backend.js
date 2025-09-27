@@ -316,5 +316,6 @@ function processSuccessfulSubmission() {
 }
 
 function processUnsuccessfulSubmission() {
-    alert("Submission unsuccessful!");
+    alert("Submission unsuccessful! Good luck on your next attempt.");
+    window.location.reload(true)
 }
