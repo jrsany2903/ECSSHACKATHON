@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>English to Arabic Translator</title>
+</head>
+<body>
+  <h1>English to Arabic Translator</h1>
+
+  <button id="translateBtn">Translate</button>
+
+  <script>
+
+    const custinfo = {
+        "fname":"XXXX",
+        "lname":"YYY",
+        "fullname":"XXXX YYY",
+        "DOB":"53/5/2025",
+        "PIN":"9876",
+        "address":"Southampton",
+        "email":"ISniffGlue@gluesniffingaddiction.com",
+        "password":"prittsticks"
+    };
+
+    document.getElementById('translateBtn').addEventListener('click', async () => {
+
+      
+    const response = await fetch('http://localhost:5000/writetofile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(custinfo)
+    });
+    
+    });
+  </script>
+</body>
+</html>
