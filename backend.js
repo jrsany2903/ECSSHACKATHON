@@ -235,14 +235,14 @@ function userHasWon(result){
 }
 
 function checkName() {
-    const firstname = document.getElementById("firstname").value
-    const surname = document.getElementById("surname").value
-    const full = document.getElementById("full").value
-    const firsur = firstname + " " + surname
+    const firstname = document.getElementById("firstname").value;
+    const surname = document.getElementById("surname").value;
+    const full = document.getElementById("full").value;
+    const firsur = firstname + " " + surname;
     if (firsur != full) {
-        document.getElementById("firstname").value = "NAMES DO NOT MATCH!"
-        document.getElementById("surname").value = "DO YOU NOT KNOW YOR NAME!"
-        document.getElementById("full").value = "I EXPECT BETTER FROM YOU!"
+        document.getElementById("firstname").value = "NAMES DO NOT MATCH!";
+        document.getElementById("surname").value = "DO YOU NOT KNOW YOR NAME!";
+        document.getElementById("full").value = "I EXPECT BETTER FROM YOU!";
     }
 }
 
