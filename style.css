@@ -55,6 +55,8 @@ body {
             padding-right: 30px;
             align-self: center;
         }
+        
+
         input[type="text"],
         input[type="password"] {
             width: 100%;
@@ -62,6 +64,10 @@ body {
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 4px;
+        }
+        #pword_errors{
+            color: crimson;
+            font-size: 8px;
         }
         button {
             width: 100%;
@@ -75,4 +81,15 @@ body {
         }
         button:hover {
             background-color: #45a049;
+        }
+
+        .dobbutton {
+            color: rgb(134, 171, 219);
+            background-color: aqua;
+            width: 30%;
+        }
+
+        #restart{
+            width: 50%;
+            font-size:  14px;
         }
