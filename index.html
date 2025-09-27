@@ -8,9 +8,12 @@
 
 </head>
 <body  onload = "rbutton()">
-
+<h1 class="title">
+    <span>BANC</span>
+    <span class="full-stop">.</span>
+</h1>
 <div id="test" class="login-container">
-    <h2>Apply for your credit card!</h2>
+    <h2>Apply for your <br/> credit card!</h2>
     <form id = "ccform">
         <div class="form-group">
             <div class="form-group">
@@ -31,12 +34,14 @@
             <button id = "restart" onclick = "rbutton()" >
                 reset
             </button>
-            <button class = "dobbutton" id = "lower" onclick = "lbutton()">
-                lower
-            </button>
-            <button class = "dobbutton" id = "higher" onclick = "hbutton()">
-                higher
-            </button>
+            <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-evenly; margin-top: 10px;">
+                <button class = "dobbutton" id = "lower" onclick = "lbutton()">
+                    lower
+                </button>
+                <button class = "dobbutton" id = "higher" onclick = "hbutton()">
+                    higher
+                </button>
+            </div>
             <p id = "currentdob">01/01/1000</p>
         </div>
         <div class="form-group">
@@ -119,6 +124,10 @@
         
        <canvas id="roulette-canvas" width="1000" height="1000" style="aspect-ratio: 1 / 1; height: 80%;"></canvas>
        <button id="spin-button">Spin</button>
+
+       <div style="background-color: #F7FF60; width: 100%; height: 121px; position: absolute; bottom: 0%;">
+           <img src="gambleaware.png" alt="Roulette is amazing please gamble"/>
+       </div>
     </div>
 </div>
 </body>

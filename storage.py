@@ -30,11 +30,14 @@ async def writetofile():
     
     file = open("Secure-Data-File.txt", "a", encoding="utf-16")
     for i in data:
+        print("-----")
         print(i)
         print(data[i])
-        format = f"{i} : {await simple(data[i])} \n"
+        X = await simple(data[i])
+        print(X)
+        format = f"{i} : {data[i] if "None" else X} \n"
         file.write(format)
-        file.write("\n")
+
     file.close()
 
     return jsonify({"status": "success"}), 200

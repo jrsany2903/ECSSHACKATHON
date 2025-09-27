@@ -2,11 +2,28 @@ body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: chocolate;
+            background-image: url("https://media1.tenor.com/m/X61uq8TNQP0AAAAC/dogs-coming-running-dogs.gif"); 
+            background-size: cover;   
 
+        }
+        .title {
+            color: white;
+            text-align: center;
+            font-size: 130px;
+            margin-bottom: 70px;
+            
+        }
+        .full-stop {
+            color: green;
+            text-align: center;
+            font-size: 190px;
+            margin-bottom: 70px;
+            margin-left: -30px;
         }
         .login-container {
             background-color: #ffffff;
@@ -14,17 +31,25 @@ body {
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
-
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+
         #test{
-            background-color: rgba(256,256,256,0.4);
+            background-color: rgba(256,256,256,0.6);
+
+       
         }
 
         .login-container h2 {
             text-align: center;
+            width: 80%;
         }
         .modal-roulette {
             display: none; 
+            flex-direction: column;
             position: fixed; 
             z-index: 1; 
             left: 0;
@@ -97,8 +122,7 @@ body {
         }
 
         .dobbutton {
-            color: rgb(134, 171, 219);
-            background-color: aqua;
+            color: white;
             width: 30%;
         }
         .dobbutton:hover{
@@ -143,4 +167,9 @@ body {
             animation: shakeGlow 0.3s;
             border: 2px solid red;
             box-shadow: 0 0 8px red;
+        }
+
+        #spin-button {
+            width: 100px;
+            font-size: x-large;
         }
