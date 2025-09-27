@@ -186,13 +186,48 @@ function SubmitButtonClick(){
             ctx.translate(-(500 + numberPosX), -(500 + numberPosY));
         }
 
+        // Arrow
+        ctx.beginPath();
+        ctx.moveTo(910, 480);
+        ctx.lineTo(950, 500);
+        ctx.lineTo(910, 520);
+        ctx.closePath();
+        ctx.fillStyle = "gold";
+        ctx.fill();
+        ctx.stroke();
+
+        // Update angleOffset and velocity
         angleOffset += velocity;
         velocity *= friction;
         if (velocity <= 0.001){
             velocity = 0;
 
-            result = numbers[numSegments - Math.round((numSegments * (angleOffset % (2 * Math.PI))) / (2 * Math.PI))];
-            console.log(userHasWon(result));
+            // Determine winning color
+            const imageData = ctx.getImageData(955, 500, 1, 1);
+            const [r, g, b, a] = imageData.data;
+
+            console.log(`RGB: (${r}, ${g}, ${b})`);
+            if (r === 255 && g === 0 && b === 0) {
+                // Landed on red.
+
+                if (userThinksRedWins) {
+                    alert("You win!");
+                }
+
+                if (!userThinksRedWins) {
+                    alert("You lose!");
+                }
+            }
+            else {
+                // Landed on black or green.
+                
+                if (userThinksRedWins) {
+                    alert("You lose!");
+                }
+                if (!userThinksRedWins) {
+                    alert("You win!");
+                }
+            }
         }
         else {
             requestAnimationFrame(drawRouletteWheel);
@@ -205,32 +240,6 @@ function SubmitButtonClick(){
         console.log(userThinksRedWins);
         document.getElementById("roulette-input").disabled = true;
         document.getElementById("spin-button").disabled = true;
-    }
-}
-
-function userHasWon(result){
-
-    if (result === 0){
-        // User landed on green
-        return false
-    }
-    else if ([32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3].includes(result)){
-        // User landed on red
-        if (userThinksRedWins){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    else {
-        // User landed on black
-        if (!userThinksRedWins){
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 }
 
