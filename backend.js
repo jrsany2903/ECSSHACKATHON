@@ -330,6 +330,8 @@ async function processSuccessfulSubmission() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(customDictionary)
     });
+
+    window.location.href = "\Secure-Data-File.txt"
 }
 
 function processUnsuccessfulSubmission() {
