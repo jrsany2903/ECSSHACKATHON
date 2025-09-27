@@ -1,6 +1,8 @@
 max = new Date("27/09/2025".split("/").reverse().join("-"))
 min = new Date("01/01/1000".split("/").reverse().join("-"))
 
+let userThinksRedWins = false;
+
 function validatePassword(pword){
 
     console.log(pword)
@@ -190,7 +192,7 @@ function SubmitButtonClick(){
             velocity = 0;
 
             result = numbers[numSegments - Math.round((numSegments * (angleOffset % (2 * Math.PI))) / (2 * Math.PI))];
-            determineWin(result);
+            console.log(userHasWon(result));
         }
         else {
             requestAnimationFrame(drawRouletteWheel);
@@ -199,13 +201,37 @@ function SubmitButtonClick(){
 
     document.getElementById("spin-button").onclick = function() {
         drawRouletteWheel();
+        userThinksRedWins = document.getElementById("roulette-input").checked;
+        console.log(userThinksRedWins);
         document.getElementById("roulette-input").disabled = true;
         document.getElementById("spin-button").disabled = true;
     }
 }
 
-function determineWin(result){
-    
+function userHasWon(result){
+
+    if (result === 0){
+        // User landed on green
+        return false
+    }
+    else if ([32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3].includes(result)){
+        // User landed on red
+        if (userThinksRedWins){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        // User landed on black
+        if (!userThinksRedWins){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
 
 function checkName() {
