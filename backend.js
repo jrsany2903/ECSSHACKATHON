@@ -1,3 +1,5 @@
+max = new Date("27/09/2025".split("/").reverse().join("-"))
+min = new Date("01/01/1000".split("/").reverse().join("-"))
 
 function validatePassword(pword){
 
@@ -64,10 +66,51 @@ function validatePassword(pword){
     return Errors.length < 1
 }
 
+function rbutton(){
+    const ptag = document.getElementById("currentdob")
+    const dobinput = document.getElementById("dob")
+    ptag.textContent = "01/01/1000"
+    dobinput.textContent = new Date("01/01/1000".split("/").reverse().join("-"))
+    max = new Date("27/09/2025".split("/").reverse().join("-"))
+    min = new Date("01/01/0001".split("/").reverse().join("-"))
+    console.log("reset")
+}
+
+function hbutton(){
+    const ptag = document.getElementById("currentdob")
+    const dobinput = document.getElementById("dob")
+    current = new Date(dobinput.textContent)
+    saveinput = calcmiddledate(current, max)
+    min = current
+    ptag.textContent = getformatteddate(saveinput)
+    dobinput.textContent = saveinput
+
+}
+
+function lbutton(){
+    const ptag = document.getElementById("currentdob")
+    const dobinput = document.getElementById("dob")
+    current = new Date(dobinput.textContent)
+    saveinput = calcmiddledate(current, min)
+    max = current
+    ptag.textContent = getformatteddate(saveinput)
+    dobinput.textContent = saveinput
+}
+
+function calcmiddledate(d1, d2){
+    md = new Date((d1.getTime() + d2.getTime() )/ 2)
+    return md
+}
+
 function selectRandomLetter(){
     let num = Math.random()
     num = Math.round(num * 26)
     return "abcdefghijklmnopqrstuvwxyz"[num]
+}
+
+
+function getformatteddate(d_object){
+    return d_object.getDate() + "/" + md.getMonth() + "/" + md.getFullYear()
 }
 
 
