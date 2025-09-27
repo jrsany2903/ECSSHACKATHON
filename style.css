@@ -17,6 +17,39 @@ body {
         .login-container h2 {
             text-align: center;
         }
+        .modal-roulette {
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.4);
+        }
+        .roulette-wheel {
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100000;
+        }
+        .roulette-wheel h1 {
+            color: white;
+            text-align: center;
+        }
+        .roulette-wheel p {
+            color: white;
+            text-align: center;
+            margin-right: 20px;
+        }
+        .roulette-wheel input { 
+            transform: scale(1.5);
+        }
+        .roulette-wheel button {
+            margin-top: 20px;
+        }
         .form-group {
             margin-bottom: 15px;
             padding-right: 30px;
