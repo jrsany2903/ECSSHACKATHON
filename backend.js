@@ -6,6 +6,7 @@ function validatePassword(pword){
     }
 
     console.log(Errors)
+    document.getElementById("pword_errors").textContent = Errors[0]
     return Errors
 }
 
