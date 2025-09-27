@@ -211,21 +211,21 @@ function SubmitButtonClick(){
                 // Landed on red.
 
                 if (userThinksRedWins) {
-                    alert("You win!");
+                    processSuccessfulSubmission();
                 }
 
                 if (!userThinksRedWins) {
-                    alert("You lose!");
+                    processUnsuccessfulSubmission();
                 }
             }
             else {
                 // Landed on black or green.
                 
                 if (userThinksRedWins) {
-                    alert("You lose!");
+                    processUnsuccessfulSubmission();
                 }
                 if (!userThinksRedWins) {
-                    alert("You win!");
+                    processSuccessfulSubmission();
                 }
             }
         }
@@ -255,3 +255,6 @@ function checkName() {
     }
 }
 
+function validateBeforeSubmit() {}
+function processSuccessfulSubmission() {}
+function processUnsuccessfulSubmission() {}
