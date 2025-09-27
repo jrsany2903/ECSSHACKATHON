@@ -12,12 +12,15 @@ body {
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
+           
         }
         .login-container h2 {
             text-align: center;
         }
         .form-group {
             margin-bottom: 15px;
+            padding-right: 30px;
+            align-self: center;
         }
         input[type="text"],
         input[type="password"] {
