@@ -11,7 +11,7 @@
 
 <div class="login-container">
     <h2>Apply for your credit card!</h2>
-    <form action="/login" method="post">
+    <form method="post">
         <div class="form-group">
             <div class="form-group">
             <label for = "firstname">First Name</label>
@@ -48,9 +48,27 @@
                 } )
             </script>
         </div>
-        <button type="submit">Apply for credit card</button>
+        <button type="submit" id="submit-button">Apply for credit card</button>
+        <script>
+                const submitButton = document.getElementById("submit-button")
+                submitButton.addEventListener('click', function(event){
+                    SubmitButtonClick()
+                } )
+            </script>
     </form>
 </div>
 
+<div id="modal-roulette" class="modal-roulette">
+    <div class="roulette-wheel" id="roulette-wheel">
+        <h1>Do you think red will win?</h1>
+        <div style="display: flex; align-items: center; flex-direction: row;">
+            <p>Yes</p>
+            <input type="checkbox" id="roulette-input"/>
+        </div>
+        
+       <canvas id="roulette-canvas" width="1000" height="1000" style="aspect-ratio: 1 / 1; height: 80%;"></canvas>
+       <button id="spin-button">Spin</button>
+    </div>
+</div>
 </body>
 </html>
