@@ -1,6 +1,10 @@
 max = new Date("27/09/2025".split("/").reverse().join("-"))
 min = new Date("01/01/1000".split("/").reverse().join("-"))
 
+textselection = "abcdefghijklmnopqrstuvwxyz0123456789 "
+
+counter = 0
+
 function validatePassword(pword){
 
     console.log(pword)
@@ -110,6 +114,38 @@ function selectRandomLetter(){
     let num = Math.random()
     num = Math.round(num * 36)
     return "abcdefghijklmnopqrstuvwxyz0123456789 "[num]
+}
+
+function testshake() {
+    const inbar = document.getElementById("address")
+    document.getElementById("letterPicker").removeAttribute("hidden")
+    document.getElementById("selectLetter_btn").removeAttribute("hidden")
+    document.getElementById("undo_btn").removeAttribute("hidden")
+    setInterval(changeLetter, 200)
+    inbar.setAttribute("readonly", true)
+    setTimeout(() => {
+        inbar.removeAttribute("readonly")
+    }, 1000)
+    console.log(inbar.innerText)
+    inbar.value = inbar.value.slice(0,-1)
+    inbar.classList.toggle("shake-error")
+    setTimeout(() => {
+        inbar.classList.toggle("shake-error")
+    }, 300); // Match duration in CSS
+}
+
+function changeLetter(){
+    viewer =  document.getElementById("letterPicker")
+    counter++
+    viewer.value = textselection[counter % 37]
+}
+
+function pickletter(){
+    document.getElementById("address").value += document.getElementById("letterPicker").value
+}
+
+function removeletter(){
+    document.getElementById("address").value = document.getElementById("address").value.slice(0,-1)
 }
 
 
