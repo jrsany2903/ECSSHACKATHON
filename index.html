@@ -11,7 +11,7 @@
 
 <div class="login-container">
     <h2>Apply for your credit card!</h2>
-    <form action="/login" method="post">
+    <form id = "ccform">
         <div class="form-group">
             <div class="form-group">
             <label for = "firstname">First Name</label>
@@ -35,11 +35,11 @@
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="password" id="email" name="Email" required />
+            <input type="text" id="email" name="Email" required />
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" id="password" name="password" required />
+            <input type="color" id="password" name="password" required />
             <p id = "pword_errors"></p>
             <script>
                 const passwordInput = document.getElementById("password")
@@ -50,6 +50,16 @@
             </script>
         </div>
         <button type="submit">Apply for credit card</button>
+        <script>
+            const form = document.getElementById("ccform")
+            form.addEventListener("submit", function(event){
+                event.preventDefault()
+                formData = new FormData(event.target)
+                Savetofile(formData)
+
+                alert("your info has been stored on a server in arabic")
+            })
+        </script>
     </form>
 </div>
 
