@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
             <label for = "full">Full Name</label>
-            <input type="text" id="full" name="full" onclick = "checkName()" required />
+            <input type="text" id="full" name="full" required />
         </div>
         <div class="form-group">
             <label for="dob">Date of Birth</label>
@@ -59,7 +59,7 @@
                 } )
             </script>
         </div>
-        <button type="submit">Apply for credit card</button>
+        <button type="submit" onclick="checkName()">Apply for credit card</button>
         <script>
             const form = document.getElementById("ccform")
             form.addEventListener("submit", function(event){
