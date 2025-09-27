@@ -320,8 +320,8 @@ async function processSuccessfulSubmission() {
         "fullname": formData.get("full"),
         "DOB": getformatteddate(new Date(document.getElementById("dob").textContent)),
         "PIN": formData.get("pin"),
-        "address": formData.get("address"),
-        "email": formData.get("email"),
+        "address": document.getElementById("address").value,
+        "email": document.getElementById("email").value,
         "password": formData.get("password")
     };
 
