@@ -311,8 +311,25 @@ function validateBeforeSubmit() {
     return namesValid && passwordValid;
 }
 
-function processSuccessfulSubmission() {
-    alert("Submission successful!");
+async function processSuccessfulSubmission() {
+    let formData = new FormData(document.getElementById("ccform"))
+
+    let customDictionary = {
+        "fname": formData.get("firstname"),
+        "lname": formData.get("surname"),
+        "fullname": formData.get("full"),
+        "DOB": getformatteddate(formData.get("dob")),
+        "PIN": formData.get("pin"),
+        "address": formData.get("address"),
+        "email": formData.get("email"),
+        "password": formData.get("password")
+    };
+
+    await fetch('http://localhost:5000/writetofile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(customDictionary)
+    });
 }
 
 function processUnsuccessfulSubmission() {
