@@ -10,6 +10,8 @@ Your address cannot be input via keyboard, instead you must select each letter i
 
 --> include the email validaion here
 
+--> include pin validation here
+
 Introducing the latest grade in password security, select your favourite colour
 
 --> include information about the wheel here
