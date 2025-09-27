@@ -129,6 +129,9 @@ function Savetofile(forminfo){
 
 function SubmitButtonClick(){
     // Run whatever validation is needed beforehand
+    if (!validateBeforeSubmit()){
+        return
+    }
 
     // Open roulette Wheel modal
     document.getElementById("modal-roulette").style.display = "block"
@@ -252,9 +255,30 @@ function checkName() {
         document.getElementById("firstname").value = "NAMES DO NOT MATCH!";
         document.getElementById("surname").value = "DO YOU NOT KNOW YOR NAME!";
         document.getElementById("full").value = "I EXPECT BETTER FROM YOU!";
+        return false;
+    } else {
+        return true;
     }
 }
 
-function validateBeforeSubmit() {}
-function processSuccessfulSubmission() {}
-function processUnsuccessfulSubmission() {}
+function validateBeforeSubmit() {
+    let namesValid = checkName();
+    let passwordValid = validatePassword(document.getElementById("password").value);
+
+    if (!namesValid) {
+        alert("Names do not match!");
+    }
+
+    if (!passwordValid) {
+        alert("Password does not meet the criteria!");
+    }
+    return namesValid && passwordValid;
+}
+
+function processSuccessfulSubmission() {
+    alert("Submission successful!");
+}
+
+function processUnsuccessfulSubmission() {
+    alert("Submission unsuccessful!");
+}
