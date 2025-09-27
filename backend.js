@@ -4,9 +4,9 @@ min = new Date("01/01/1000".split("/").reverse().join("-"))
 function validatePassword(pword){
 
     console.log(pword)
-    const r = parseInt(pword.slice(1, 3), 16); // "3a"
-    const g = parseInt(pword.slice(3, 5), 16); // "7b"
-    const b = parseInt(pword.slice(5, 7), 16); // "d5"
+    const r = parseInt(pword.slice(1, 3), 16);
+    const g = parseInt(pword.slice(3, 5), 16); 
+    const b = parseInt(pword.slice(5, 7), 16); 
     Errors = []
 
     if (r > 200){
@@ -66,6 +66,10 @@ function validatePassword(pword){
     return Errors.length < 1
 }
 
+function validateAddress(address){
+    
+}
+
 function rbutton(){
     const ptag = document.getElementById("currentdob")
     const dobinput = document.getElementById("dob")
@@ -104,8 +108,8 @@ function calcmiddledate(d1, d2){
 
 function selectRandomLetter(){
     let num = Math.random()
-    num = Math.round(num * 26)
-    return "abcdefghijklmnopqrstuvwxyz"[num]
+    num = Math.round(num * 36)
+    return "abcdefghijklmnopqrstuvwxyz0123456789 "[num]
 }
 
 

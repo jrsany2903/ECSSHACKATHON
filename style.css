@@ -55,8 +55,12 @@ body {
             background-color: aqua;
             width: 30%;
         }
+        .dobbutton:hover{
+            background-color: aquamarine;
+        }
 
         #restart{
             width: 50%;
             font-size:  14px;
+            padding: 2px;
         }
